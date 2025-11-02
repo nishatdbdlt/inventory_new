@@ -1,0 +1,90 @@
+<odoo>
+
+<record id="view_inventory_customer_tree" model="ir.ui.view">
+        <field name="name">inventory.customer.tree</field>
+        <field name="model">inventory.customer</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="customer_type"/>
+                <field name="total_purchases"/>
+                <field name="outstanding_balance"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_inventory_customer_form" model="ir.ui.view">
+        <field name="name">inventory.customer.form</field>
+        <field name="model">inventory.customer</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Customer Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Contact Information">
+                            <field name="code" readonly="1"/>
+                            <field name="customer_type"/>
+                            <field name="phone"/>
+                            <field name="mobile"/>
+                            <field name="email"/>
+                        </group>
+                        <group string="Financial">
+                            <field name="total_purchases"/>
+                            <field name="outstanding_balance"/>
+                            <field name="credit_limit"/>
+                        </group>
+                    </group>
+                    <group string="Company Details">
+                        <field name="company_name"/>
+                        <field name="tax_id"/>
+                    </group>
+                    <group string="Address">
+                        <field name="street"/>
+                        <field name="street2"/>
+                        <field name="city"/>
+                        <field name="state"/>
+                        <field name="zip_code"/>
+                        <field name="country"/>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                        <page string="Sales History">
+<!--                            <field name="sale_order_ids">-->
+<!--                                <tree>-->
+<!--                                    <field name="name"/>-->
+<!--                                    <field name="date_order"/>-->
+<!--                                    <field name="total_amount"/>-->
+<!--                                    <field name="state"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_inventory_customer" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="res_model">inventory.customer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+       <menuitem id="menu_inventory_customer_main"
+              name="Customers"
+              parent="menu_inventory_root"
+              action="action_inventory_customer"
+              sequence="20"/>
+</odoo>
